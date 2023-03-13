@@ -2,19 +2,29 @@
 pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
+import "./lib/BytecodeDeployer.sol";
 import "./lib/YulDeployer.sol";
 import "forge-std/console.sol";
 
 contract BasicTest is Test {
     YulDeployer yulDeployer = new YulDeployer();
-    address public basic;
+    BytecodeDeployer bytecodeDeployer = new BytecodeDeployer();
+    address basic;
+    address basicBytecode;
 
-    function setUp() public {
+    function setUp() external {
         basic = yulDeployer.deployContract("Basic");
+        basicBytecode = bytecodeDeployer.deployContract("Basic");
     }
 
-    function testBasic() public {
+    function testBasic() external {
         (bool success, bytes memory result) = basic.staticcall("");
+        assertEq(uint256(bytes32(result)), 8);
+        assertTrue(success);
+    }
+
+    function testBasicBytecode() external {
+        (bool success, bytes memory result) = basicBytecode.staticcall("");
         assertEq(uint256(bytes32(result)), 8);
         assertTrue(success);
     }
