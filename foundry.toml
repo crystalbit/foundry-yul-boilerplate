@@ -1,0 +1,6 @@
+[profile.default]
+src = 'src'
+out = 'out'
+libs = ['lib']
+verbosity = 4
+ffi = true
