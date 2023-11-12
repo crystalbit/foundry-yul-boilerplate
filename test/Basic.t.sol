@@ -2,8 +2,8 @@
 pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
-import "./lib/BytecodeDeployer.sol";
-import "./lib/YulDeployer.sol";
+import "deploy-yul/BytecodeDeployer.sol";
+import "deploy-yul/YulDeployer.sol";
 import "forge-std/console.sol";
 
 contract BasicTest is Test {
